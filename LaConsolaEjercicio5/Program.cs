@@ -11,24 +11,21 @@ namespace LaConsolaEjercicio5
         public static void Main()
         {
             ConsoleKeyInfo tecla;
-            // Prevent example from ending if CTL+C is pressed.
             Console.TreatControlCAsInput = true;
-            string laTecla;
-
             do
             {
-                Console.WriteLine("Presiona cualquier tecla.\nPara salir presiona CTRL + F");
+                Console.WriteLine("Ingrese CTRL + F para salir");
                 tecla = Console.ReadKey();
-                laTecla = tecla.Key.ToString();
-                Console.Write(" --- Presionaste las teclas: ");
-                if ((tecla.Modifiers & ConsoleModifiers.Alt) != 0) Console.Write("ALT + ");
-                if ((tecla.Modifiers & ConsoleModifiers.Shift) != 0) Console.Write("SHIFT + ");
-                if ((tecla.Modifiers & ConsoleModifiers.Control) != 0) Console.Write("CTL + ");
-                Console.WriteLine(tecla.Key.ToString());
 
-            } while (tecla.Modifiers != ConsoleModifiers.Control || laTecla != "F");
+                if ((tecla.Modifiers & ConsoleModifiers.Control) != 0
+                        && (tecla.Modifiers & ConsoleModifiers.Shift) == 0
+                            && tecla.Key == ConsoleKey.F
+                                && (tecla.Modifiers & ConsoleModifiers.Alt) == 0)
+                {
+                    break;
+                }
 
-
+            } while (true);
         }
     }
 }
